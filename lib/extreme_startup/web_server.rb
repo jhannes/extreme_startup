@@ -19,8 +19,8 @@ module ExtremeStartup
     set :players,    Hash.new
     set :players_threads, Hash.new
     set :scoreboard, Scoreboard.new
-    set :question_factory, QuestionFactory.new
-    #set :question_factory, WorkshopQuestionFactory.new
+    #set :question_factory, QuestionFactory.new
+    set :question_factory, WorkshopQuestionFactory.new
     #set :question_factory, WarmupQuestionFactory.new
     set :quizmaster_type, QuizMaster
 

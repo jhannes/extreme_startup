@@ -29,6 +29,26 @@ module ExtremeStartup::Questions
 	  end
     end
 	
+	
+    context "when player has answered twenty questions time zone is introduced" do
+      let(:player) { Player.new }
+      let(:conversation) { FlightTime.new(player) }
+      
+      it "ask for different time zone" do
+        10.times { player.answers_for_question(FlightTime,  "correct") }
+		question = conversation.question
+        question.include?("London").should == true		
+		number = question.scan(/It takes (\d+) minutes/).first.first.to_i
+		conversation.correct_answer.should == conversation.compute_answer(2011,10,29,8,0,number,"+01:00")
+      end
+	  
+	  it "should unleash hell when 30 questions are answered correctly" do
+		30.times { player.answers_for_question(FlightTime,  "correct") }
+		question = conversation.question
+		question.include?("A jetplane").should == true		      
+	  end
+    end	
+	
   end
 end
 
