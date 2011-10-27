@@ -2,6 +2,8 @@ Welcome
 =======
 This is Extreme Startup. This software supports a workshop where teams can compete to build a software product that satisfies market demand.
 
+This branch is dedicated to DateTimeQuestions.
+
 NB don't show the players the code for this project until after the workshop as otherwise they can cheat.
 
 Getting started
