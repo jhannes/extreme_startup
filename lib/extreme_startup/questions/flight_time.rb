@@ -23,6 +23,7 @@ module ExtremeStartup::Questions
 	
 	def correct_answer(year,month,day,hour,minutes,duration,timezone_offset="+00:00")
 	    ctime = Time.utc(year,month,day,hour,minutes).localtime(timezone_offset) + (duration*60)
+		ctime = ctime + (adjust_by_hours*60)
 		return "#{"%02d" % ctime.day}.#{"%02d" % ctime.month}.#{ctime.year} at #{"%02d" % ctime.hour}:#{"%02d" % ctime.min}"
 	end
 

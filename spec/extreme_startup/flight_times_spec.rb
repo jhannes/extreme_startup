@@ -23,6 +23,9 @@ module ExtremeStartup::Questions
 		
 	  end
 
+	  it "should compute correct answer when in different" do
+		conversation.correct_answer(2011,10,23,8,0,30,"+01:00").should == "23.10.2011 at 09:30"
+	  end
     end
 	
   end
