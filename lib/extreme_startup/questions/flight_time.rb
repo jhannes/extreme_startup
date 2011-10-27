@@ -20,6 +20,19 @@ module ExtremeStartup::Questions
       
       true
     end
+	
+	def correct_answer(year,month,day,hour,minutes,duration,timezone_offset=0)
+	     minutes+=duration
+		 while (minutes >= 60) do
+			hour+=1
+			minutes-=60
+		 end
+		 while (hour >= 24) do
+			hour-=24
+			day+=1
+		end
+		return "#{"%02d" % day}.#{"%02d" % month}.#{year} at #{"%02d" % hour}:#{"%02d" % minutes}"
+	end
 
     def points
       return 0
