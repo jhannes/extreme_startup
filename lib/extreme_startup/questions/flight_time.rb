@@ -5,8 +5,8 @@ module ExtremeStartup::Questions
     
     def initialize(player)
       super(player)
-	  if (@player.correct_answers(self.class) >= 30)
-		seed = Random.rand(2)
+	  if (@player.correct_answers(self.class) >= 20)
+		seed = Random.rand(5)
 		case seed
 		when 0
 		    minutes = Random.rand(60)+110;
@@ -20,17 +20,17 @@ module ExtremeStartup::Questions
 		    minOfHour = Random.rand(60)
 			minutes = Random.rand(60)+300;
 			@fact = compute_answer(2011,10,29,8,0,minutes)
-			@question_text = "A jetplane from New Your takes off 29.10.2011 at 03:#{minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
+			@question_text = "A jetplane from New Your takes off 29.10.2011 at 03:#{"%02d" % minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
 			@fact = compute_answer(2011,10,29,8,minOfHour,minutes)
 		when 3
 			minOfHour = Random.rand(60)
 			minutes = Random.rand(60)+180;
-			@question_text = "A jetplane from Rome takes off 30.10.2011 at 01:#{minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
+			@question_text = "A jetplane from Rome takes off 30.10.2011 at 01:#{"%02d" % minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
 			@fact = compute_answer(2011,10,30,0,minOfHour,minutes)
 		when 4
 			minOfHour = Random.rand(30)
-			minutes = Random.rand(60)+20;
-			@question_text = "A jetplane leaves Cophenhagen March 27th 2011 at 01:#{minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
+			minutes = Random.rand(20)+60;
+			@question_text = "A jetplane leaves Cophenhagen March 27th 2011 at 01:#{"%02d" % minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
 			@fact = compute_answer(2011,3,27,2,minOfHour,minutes)	
 		end
 		

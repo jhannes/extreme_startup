@@ -93,7 +93,28 @@ module ExtremeStartup
   class WorkshopQuestionFactory < GatedQuestionFactory
     def initialize
       super([
-          [ExtremeStartup::Questions::FlightTime]])
+          [RememberMeQuestion,
+          ExtremeStartup::Questions::WebshopQuestion,
+          ExtremeStartup::Questions::WebshopQuestion,
+          ExtremeStartup::Questions::WebshopQuestion,
+          ExtremeStartup::Questions::WebshopQuestion,
+		  ExtremeStartup::Questions::FlightTime,
+		  ExtremeStartup::Questions::FlightTime,
+		  ExtremeStartup::Questions::FlightTime,
+          DivisionQuestion,
+          AdditionQuestion,
+          MaximumQuestion,
+          MultiplicationQuestion, 
+          SquareCubeQuestion,
+          GeneralKnowledgeQuestion,
+          PrimesQuestion,
+          SubtractionQuestion,
+          FibonacciQuestion,  
+          #PowerQuestion,
+          #AdditionAdditionQuestion,
+          AdditionMultiplicationQuestion,
+          MultiplicationAdditionQuestion
+        ]])
     end
   end
 end

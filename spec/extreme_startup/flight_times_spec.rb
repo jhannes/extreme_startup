@@ -43,7 +43,7 @@ module ExtremeStartup::Questions
       end
 	  
 	  it "should unleash hell when 30 questions are answered correctly" do
-		30.times { player.answers_for_question(FlightTime,  "correct") }
+		20.times { player.answers_for_question(FlightTime,  "correct") }
 		question = conversation.question
 		question.include?("A jetplane").should == true		      
 	  end
