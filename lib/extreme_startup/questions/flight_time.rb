@@ -3,13 +3,13 @@ module ExtremeStartup::Questions
 
   class FlightTime < Question
     
-    def initialize()
-      
+    def initialize(player)
+      super(player)
     end
 
     def question
-      
-      return "A flight from Paris to Oslo leaves from Paris 23.10.2011 at 08:00. It takes 150 minutes. When does it land in Oslo ?"
+      minutes = Random.rand(60)+110;
+      return "A flight from Paris to Oslo leaves from Paris 29.10.2011 at 08:00. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
     end
 
   
