@@ -9,31 +9,28 @@ module ExtremeStartup::Questions
 
     def question
       minutes = Random.rand(60)+110;
+	  @correct_answer_to_question = compute_answer(2011,10,29,8,0,minutes)
       return "A flight from Paris to Oslo leaves from Paris 29.10.2011 at 08:00. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
     end
 
   
-    def add_answer(answer)
-    end
-
-    def answered_correctly?
-      
-      true
-    end
+		
+	def correct_answer
+		@correct_answer_to_question
+	end
 	
-	def correct_answer(year,month,day,hour,minutes,duration,timezone_offset="+00:00")
+	def compute_answer(year,month,day,hour,minutes,duration,timezone_offset="+00:00")
 	    ctime = Time.utc(year,month,day,hour,minutes).localtime(timezone_offset) + (duration*60)
-		ctime = ctime + (adjust_by_hours*60)
 		return "#{"%02d" % ctime.day}.#{"%02d" % ctime.month}.#{ctime.year} at #{"%02d" % ctime.hour}:#{"%02d" % ctime.min}"
 	end
 
     def points
-      return 0
+      return 30
     end
     
   
     def penalty
-      return 0
+      return -300
     end
 
   
