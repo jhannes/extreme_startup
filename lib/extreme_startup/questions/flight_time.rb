@@ -72,7 +72,8 @@ module ExtremeStartup::Questions
     
   
     def penalty
-      return -300
+      return -300 if @player.correct_answers(self.class) > 0
+      return -10
     end
 
   
