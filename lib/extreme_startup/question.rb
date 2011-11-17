@@ -70,7 +70,9 @@ module ExtremeStartup
     end
     
     def log_result
-      "|question: #{self.to_s}|answer: #{answer && answer[0..100].gsub("\n", "")}|expected: #{correct_answer}|result: #{result}"
+      "|question: #{self.to_s}|answer: #{answer[0..100].gsub("\n", "")}|expected: #{correct_answer}|result: #{result}"
+      rescue => e
+        "error during logging #{e}"
     end
 
     def id
