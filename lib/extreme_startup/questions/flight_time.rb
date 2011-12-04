@@ -1,8 +1,8 @@
 module ExtremeStartup::Questions
   include ExtremeStartup
-  
+
   class FlightTime < Question
-    
+
     def initialize(player)
       super(player)
       if (@player.correct_answers(self.class) >= 20)
@@ -12,9 +12,9 @@ module ExtremeStartup::Questions
           minutes = Random.rand(60)+110;
           @fact = compute_answer(2011,10,29,8,0,minutes,"+01:00")
           @question_text = "A jetplane from London to Oslo leaves 29.10.2011 at 08:00. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
-        when 1            
+        when 1
           minutes = Random.rand(60)+110;
-          @fact = compute_answer(2011,10,29,8,0,minutes)            
+          @fact = compute_answer(2011,10,29,8,0,minutes)
           @question_text = "A jetplane from Paris to Oslo leaves from Paris 29.10.2011 at 08:00. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
         when 2
           minOfHour = Random.rand(60)
@@ -31,7 +31,7 @@ module ExtremeStartup::Questions
           minOfHour = Random.rand(30)
           minutes = Random.rand(20)+60;
           @question_text = "A jetplane leaves Cophenhagen March 27th 2011 at 01:#{"%02d" % minOfHour}. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
-          @fact = compute_answer(2011,3,27,2,minOfHour,minutes)    
+          @fact = compute_answer(2011,3,27,2,minOfHour,minutes)
         end
       else
         minutes = Random.rand(60)+110;
@@ -41,18 +41,18 @@ module ExtremeStartup::Questions
         else
           @fact = compute_answer(2011,10,29,8,0,minutes)
           @question_text = "A flight from Paris to Oslo leaves from Paris 29.10.2011 at 08:00. It takes #{minutes} minutes. When (local time) does it land in Oslo ?"
-        end 
+        end
       end
     end
 
     def question
       return @question_text
     end
-    
+
     def as_text
       return question
     end
-        
+
     def correct_answer
       return @fact
     end
