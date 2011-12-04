@@ -1,5 +1,6 @@
 require_relative 'question'
 require_relative 'questions/webshop_conversation'
+require_relative 'questions/flight_time'
 
 module ExtremeStartup
   class QuestionFactory
@@ -88,6 +89,7 @@ module ExtremeStartup
   end
 
   # TODO This should have several question sets, but it didn't advance to the last one!
+  
   class WorkshopQuestionFactory < GatedQuestionFactory
     def initialize
       super([
@@ -96,6 +98,9 @@ module ExtremeStartup
           ExtremeStartup::Questions::WebshopQuestion,
           ExtremeStartup::Questions::WebshopQuestion,
           ExtremeStartup::Questions::WebshopQuestion,
+          ExtremeStartup::Questions::FlightTime,
+          ExtremeStartup::Questions::FlightTime,
+          ExtremeStartup::Questions::FlightTime,
           DivisionQuestion,
           AdditionQuestion,
           MaximumQuestion,
