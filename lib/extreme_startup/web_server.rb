@@ -20,9 +20,8 @@ module ExtremeStartup
     set :players_threads, Hash.new
     set :scoreboard, Scoreboard.new
     set :question_factory, QuestionFactory.new
-    #set :question_factory, WorkshopQuestionFactory.new
-    #set :question_factory, WarmupQuestionFactory.new
     set :quizmaster_type, QuizMaster
+    set :default_question_delay, 5
 
     get '/' do
       haml :leaderboard, :locals => {
@@ -112,7 +111,7 @@ module ExtremeStartup
         players[player.uuid] = player
   
         player_thread = Thread.new do
-          settings.quizmaster_type.new(player, scoreboard, question_factory).start
+          settings.quizmaster_type.new(player, scoreboard, question_factory, settings.default_question_delay).start
         end
         players_threads[player.uuid] = player_thread
   

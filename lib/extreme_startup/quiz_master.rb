@@ -63,10 +63,11 @@ module ExtremeStartup
 
   class QuizMaster
     
-    def initialize(player, scoreboard, question_factory)
+    def initialize(player, scoreboard, question_factory, default_delay = 5)
       @player = player
       @scoreboard = scoreboard
       @question_factory = question_factory
+      @default_delay = default_delay
     end
     
     def player_passed?(response)
@@ -82,8 +83,7 @@ module ExtremeStartup
         log.info("Player: #{@player}|#{question.log_result}") unless $silence_logging
         @scoreboard.increment_score_for(@player, question.score)
         @player.log_result(question.id, question.result, question.score)
-        #sleep question.delay_before_next(1)
-        sleep question.delay_before_next
+        sleep question.delay_before_next(@default_delay)
       end
     end
   end
