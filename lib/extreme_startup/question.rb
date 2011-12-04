@@ -287,12 +287,12 @@ module ExtremeStartup
 
     def is_square(x)
       return true if x == 0
-      (x % Math.sqrt(x)) == 0
+      (Math.sqrt(x).round ** 2) == x
     end
 
     def is_cube(x)
       return true if x == 0
-      (x % Math.cbrt(x)) == 0
+      (Math.cbrt(x).round ** 3) == x
     end
   end
 
@@ -314,6 +314,7 @@ module ExtremeStartup
    end
 
   class FibonacciQuestion < BinaryMathsQuestion
+
     def which_number
       return @n1 + 1000 if (@player.correct_answers(self.class) > 25)
       return @n1 + 200 if (@player.correct_answers(self.class) > 15)
@@ -326,10 +327,20 @@ module ExtremeStartup
       50
     end
     def correct_answer
-      n = which_number
-      root5 = Math.sqrt(5)
-      phi = 0.5 + root5/2
-      Integer(0.5 + phi**n/root5)
+      (@answer ||= calculate)
+    end
+
+    def calculate
+      n = 1
+      n_minus_one = 1
+      i = 2
+      while i < which_number
+        next_n = n+n_minus_one
+        n_minus_one = n
+        n = next_n
+        i += 1
+      end
+      return n
     end
   end
 

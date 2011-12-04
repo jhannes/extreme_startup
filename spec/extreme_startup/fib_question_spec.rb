@@ -45,7 +45,7 @@ module ExtremeStartup
       it "should answer correctly quickly" do
         question = FibonacciQuestion.new(Player.new, 200)
         question.which_number.should == 204
-        question.correct_answer.should == 1923063428480957210245803843555347568525312
+        question.correct_answer.should == 1923063428480944139667114773918309212080528
       end
       it "should answer quickly for extreme numbers" do
         question = FibonacciQuestion.new(Player.new, 1100)
