@@ -90,6 +90,10 @@ module ExtremeStartup::Questions
     end
 
     def correct_answer
+      if @state == Done
+        return order_total
+      end
+      nil
     end
 
     def order_total
