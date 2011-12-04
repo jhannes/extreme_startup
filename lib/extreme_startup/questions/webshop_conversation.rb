@@ -91,7 +91,7 @@ module ExtremeStartup::Questions
 
     def correct_answer
       if @state == Done
-        return order_total
+        return "#{order_total} (shopping cart: #{@shopping_cart})"
       end
       nil
     end

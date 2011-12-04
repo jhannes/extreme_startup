@@ -429,12 +429,23 @@ module ExtremeStartup
     def get(url)
       response = HTTParty.get(url, :headers => headers)
       return response unless response.success?
-      @cookie = response.headers['set-cookie'] || @cookie
-      return response
+
+      cookie = response.headers['set-cookie']
+      if cookie
+        cookie_name = cookie.split(/;/).first.partition("=").first
+        cookie_value = cookie.split(/;/).first.partition("=").last
+        @cookies ||= {}
+        @cookies[cookie_name] = cookie_value
+      end
+      response
+    end
+
+    def cookies
+      @cookies.collect { |k,v| "#{k}=#{v}" }.join("; ")
     end
 
     def headers
-      @cookie ? { "cookie" => @cookie } : {}
+      @cookies ? { "cookie" => cookies } : {}
     end
 
     def answered_correctly?
