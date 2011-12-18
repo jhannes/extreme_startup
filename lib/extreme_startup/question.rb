@@ -93,7 +93,7 @@ module ExtremeStartup
     end
 
     def answered_correctly?(answer)
-      correct_answer.to_s.downcase.strip == answer.downcase
+      correct_answer.to_s.downcase.strip == answer.to_s.downcase
     end
 
     def points
