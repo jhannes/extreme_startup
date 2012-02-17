@@ -70,7 +70,7 @@ module ExtremeStartup
     end
     
     def log_result
-      "|question: #{self.to_s}|answer: #{answer[0..100].gsub("\n", "")}|expected: #{correct_answer}|result: #{result}"
+      "|question: #{self.to_s}|answer: #{answer && answer[0..100].gsub("\n", "")}|expected: #{correct_answer}|result: #{result}"
       rescue => e
         "error during logging #{e}"
     end
@@ -89,7 +89,7 @@ module ExtremeStartup
     end
 
     def answer
-      @answer && @answer.downcase.strip
+      @answer && @answer.downcase.strip.force_encoding("ASCII-8BIT")
     end
 
     def answered_correctly?(answer)
@@ -327,7 +327,7 @@ module ExtremeStartup
       50
     end
     def correct_answer
-      (@answer ||= calculate)
+      (@correct_answer ||= calculate)
     end
 
     def calculate
@@ -343,24 +343,11 @@ module ExtremeStartup
       return n
     end
   end
-
-  class GeneralKnowledgeQuestion < Question
-    class << self
-      def question_bank
-        [
-          ["what is the twitter id of the organizer of this dojo", "jhannes"],
-          ["who is the Prime Minister of Great Britain", "David Cameron"],
-          ["which city is the Eiffel tower in", "Paris"],
-          ["what currency did Spain use before the Euro", "peseta"],
-          ["what colour is a banana", "yellow"],
-          ["who played James Bond in the film Dr No", "Sean Connery"]
-        ]
-      end
-    end
-
-    def initialize(player)
+  
+  class TriviaQuestions < Question
+    def initialize(player, question_bank)
       super(player)
-      question = GeneralKnowledgeQuestion.question_bank.sample
+      question = question_bank.sample
       @question = question[0]
       @correct_answer = question[1]
     end
@@ -371,6 +358,19 @@ module ExtremeStartup
 
     def correct_answer
       @correct_answer
+    end  
+  end
+
+  class GeneralKnowledgeQuestion < TriviaQuestions
+    def initialize(player)
+      super(player, [
+          ["what is the twitter id of the organizer of this dojo", "jhannes"],
+          ["who is the Prime Minister of Great Britain", "David Cameron"],
+          ["which city is the Eiffel tower in", "Paris"],
+          ["what currency did Spain use before the Euro", "peseta"],
+          ["what colour is a banana", "yellow"],
+          ["who played James Bond in the film Dr No", "Sean Connery"]
+        ])
     end
   end
 
@@ -387,6 +387,7 @@ module ExtremeStartup
     def answer=(answer)
       @answer = answer
       @session.add_answer(answer)
+      @player.answers_for_question(self.class, result)
     end
 
     def answered_correctly?(answer)
@@ -482,7 +483,7 @@ module ExtremeStartup
 
     def question
       if answered_correctly?
-        return "what is my name"
+        return "I was here before. what is my name"
       else
         return "my name is #{@name}. what is my name"
       end
