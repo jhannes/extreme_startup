@@ -30,8 +30,8 @@ module ExtremeStartup
       @url = params['url']
       @uuid = Player.generate_uuid
       @log = []
-     @correct_answers = Hash.new(0)
-     @wrong_answers = Hash.new(0)
+      @correct_answers = Hash.new(0)
+      @wrong_answers = Hash.new(0)
     end
 
     def log_result(id, msg, points)
@@ -43,7 +43,7 @@ module ExtremeStartup
     end
   
    def answers_for_question(question_class, result)
-     if result == "correct"
+    if result == "correct"
       @correct_answers[question_class] += 1
     elsif result == "wrong"
       @wrong_answers[question_class] += 1
