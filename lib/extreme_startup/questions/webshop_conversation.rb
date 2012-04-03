@@ -36,7 +36,7 @@ module ExtremeStartup::Questions
       @queried_product = @purchased_product = nil
       if @state == RequestingProductList
         if (@product_list == nil)
-          return "what products do you have for sale (comma separated)"
+          return "I want to shop. What products do you have for sale (comma separated)"
         else
           @state = RequestingPrice
         end
