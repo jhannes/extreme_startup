@@ -42,12 +42,11 @@ Notes for facilitators
 * Everyone needs a computer connected to the same network, so that they can communicate. Check that everyone can see the leaderboard page served by the webapp running on your machine. Depending on the situation, we have used a local/ad-hoc network and that is ok for the game.
 * We have had trouble with things like firewalls, especially on some Windows laptops, so if there are problems, make sure you can ping clients from the server and vice versa.
 
-* Warmup round: use the WarmupQuizmaster - configure this by changing the code in lib/extreme_startup/web_server.rb around line 20(ish).
-set :quizmaster_type, WarmupQuizMaster
+* Warmup round: Run ruby warmup_server.rb
 
 * In the warmup round, just make sure that everyone has something technologically working, you just get the same request repeatedly.
 
-* Real game: revert to using the full QuizMaster, and restart the server. This will clear any registered players, but that's ok.
+* Real game: Kill the warmup server, and run ruby web_server.rb. This will clear any registered players, but that's ok.
 * As the game progresses, you can introduce new question types by moving to the next round (hit the /advance_round url). Do this when you feel like some of the teams are making good progress in the current round. Typically we've found this to be about every 10 mins. But you can go faster/slower as you like. There are 6 rounds available.
 
 * Set a time limit so you know when to stop the game, declare the winner, and retrospect.
