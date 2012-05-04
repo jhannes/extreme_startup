@@ -110,6 +110,7 @@ module ExtremeStartup::Questions
       elsif @state == RequestingPrice
         return @price
       elsif @state == Done
+        return false if order_total <= 0
         return (Float(@answer.strip) rescue nil) == order_total
       end
       true

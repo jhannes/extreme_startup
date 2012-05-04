@@ -48,7 +48,7 @@ module ExtremeStartup
         when "correct"
           @player.correct_answers(self.class) <= 10 ? points : points/10
         when "wrong"
-          return penalty*2 if @player.correct_answers(self.class) > 0
+          return penalty*5 if @player.correct_answers(self.class) > 0
           return penalty   if @player.wrong_answers(self.class) <= 10
           return penalty/10
         when "error_response" then -5
