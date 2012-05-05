@@ -58,11 +58,6 @@ Then /^the game master should start sending me question$/ do
   app.players_threads[player_uuid].should be_alive
 end
 
-When /^I withdraw$/ do
-  visit '/'
-  click_link 'Withdraw'
-end
-
 Then /^my name should not be on the leaderboard anymore$/ do
   page.should_not have_content("Jedi masters")
 end
