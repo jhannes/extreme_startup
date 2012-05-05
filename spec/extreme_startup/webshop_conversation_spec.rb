@@ -9,7 +9,7 @@ module ExtremeStartup::Questions
       let(:conversation) { WebshopConversation.new }
 
       it "should start by asking for products" do
-        conversation.question.should == "what products do you have for sale (comma separated)"
+        conversation.question.should == "I want to shop. What products do you have for sale (comma separated)"
       end
 
      it "should not allow only one product" do

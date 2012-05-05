@@ -65,7 +65,7 @@ module ExtremeStartup
 	  10.times { DummyQuestion.new(player).answer = "incorrect" }
 	  1.times { DummyQuestion.new(player).answer = "correct"}
 	  question.answer = "incorrect"
-	  question.score.should == -200
+	  question.score.should == -500
 	end
   end
 end
